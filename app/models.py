@@ -56,8 +56,23 @@ class Product:
         with open(f"app/products/{self.product_id}.json", "w", encoding="UTF-8") as jf:
             json.dump(self.to_dict(), jf, ensure_ascii=False, indent=4)
 
+    def import_from_json(self):
+        with open(f"app/products/{self.product_id}.json", "w", encoding="UTF-8") as jf:
+            product = json.loads(jf)
+
+        self.product_id = product['product_id']
+        self.product_name = product['product_name']
+        self.opinions = product['opinions']
+        self.opinions_count = product['opinions_count']
+        self.pros_count = product['pros_count']
+        self.cons_count = product['cons_count']
+        self.average_score = product['average_score']
+        opinions = product['opinions']
+        for opinion in opinions:
+            self.opinions.append(Opinion(**opinion))
+
     def analyze(self):
-        self.opinions_count = len(self.opinion)
+        self.opinions_count = len(self.opinions)
         #self.pros_count = self.opinions.pros.map(bool).sum()
         #self.cons_count = self.opinions.cons.map(bool).sum()
         #self.average_score = self.opinions.stars.mean()
