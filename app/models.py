@@ -57,12 +57,10 @@ class Product:
             json.dump(self.to_dict(), jf, ensure_ascii=False, indent=4)
 
     def import_from_json(self):
-        with open(f"app/products/{self.product_id}.json", "w", encoding="UTF-8") as jf:
-            product = json.loads(jf)
-
+        with open(f"app/products/{self.product_id}.json", "r", encoding="UTF-8") as jf:
+            product = json.load(jf)
         self.product_id = product['product_id']
         self.product_name = product['product_name']
-        self.opinions = product['opinions']
         self.opinions_count = product['opinions_count']
         self.pros_count = product['pros_count']
         self.cons_count = product['cons_count']
