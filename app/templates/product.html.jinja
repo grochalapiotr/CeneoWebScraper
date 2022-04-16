@@ -4,22 +4,41 @@
 {% endblock head %}
 {% block body %}
     <h2>Opinie o produkcie</h2>
+    <h2>{{ product['product_name'] }}</h2>
     <div class="table_style">
-        <table id='opinions' class="table table-striped table-primary display nowrap">
+        <table id='opinions' class="table table-striped table-hover table-bordered display nowrap ">
             <thead>
                 <tr>
-                {% for key in product.opinions[0] %}
-                    <th class="opinion-key">{{ key }}</th>
-                {% endfor %}
+                        <th>Id opinii</th>
+                        <th>Autor</th>
+                        <th>Rekomendacja</th>
+                        <th>Ocena</th>
+                        <th>Potwierdzone zakupem</th>
+                        <th>Data wystawienia</th>
+                        <th>Data zakupu</th>
+                        <th>Opinia przydatna</th>
+                        <th>Opinia nieprzydatna</th>
+                        <th>Treść opinii</th>
+                        <th>Zalety</th>
+                        <th>Wady</th>
                 </tr>
             </thead>    
             <tbody>
             {% for opinion in product.opinions %}
                 <tr>
-                {% for key in opinion %}
-                    <td>{{opinion[key]}}</td>
-                {% endfor %}
-                </tr>
+                        <td>{{opinion['opinion_id']}}</td>
+                        <td>{{opinion['author']}}</td>
+                        <td>{{opinion['recommendation']}}</td>
+                        <td>{{opinion['stars']}}</td>
+                        <td>{{opinion['verified']}}</td>
+                        <td>{{opinion['post_date']}}</td>
+                        <td>{{opinion['purchase_date']}}</td>
+                        <td>{{opinion['usefulness']}}</td>
+                        <td>{{opinion['uselessness']}}</td>
+                        <td align ="left">{{opinion['content']}}</td>
+                        <td align ="left">{{', '.join(opinion['pros'])}}</td>
+                        <td align ="left">{{', '.join(opinion['cons'])}}</td>
+                    </tr>
             {% endfor %}
             </tbody>
         </table>

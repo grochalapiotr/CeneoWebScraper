@@ -1,7 +1,9 @@
 {% extends "layout.html.jinja" %}
-
+{% block body %}
+    <h2 style="text-align: center;">Ekstracja opinii o produkcie</h2>
+{% endblock body %}
 {% block middle %}
-    <h2>Ekstracja opinii o produkcie</h2>
+
     {% if error is defined %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong><i class="bi bi-exclamation-triangle-fill"></i>Błąd!</strong> {{ error }}

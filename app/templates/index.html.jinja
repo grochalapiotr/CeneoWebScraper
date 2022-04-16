@@ -1,5 +1,29 @@
 {% extends "layout.html.jinja" %}
 
-{% block middle %}
-    <h2>Opis projektu</h2>
-{% endblock middle %} 
+{% block body %}
+    <div class="container">
+
+    <div class="row">
+        <div class="col widget app-purpose">
+            <h2 class="widget-title">
+                Cel aplikacji
+            </h2>
+            <span>
+                <h5>
+                    Aplikacja służy do pobierania wszystkich opinii o danym produkcie z serwisu Ceneo.pl. Umozliwia ona dokonanie lepszego wyboru produktu
+                </h5>
+            </span>
+        </div>
+        <div class="col widget app-description">
+            <h2 class="widget-title">
+                Opis działania
+            </h2>
+            <div class="col">
+                <h5>
+                    Aplikacja uywając języka Python ekstraktuje oraz analizuje kod strony z danym produktem po czym zapisuje wszystkie opinie do jednego pliku w formacie json. Najwazniejsze informacje wyświetlane są dla uytkownika w formie tabeli.
+
+                </h5>
+            </div>
+        </div>
+    </div>
+{% endblock body %} 

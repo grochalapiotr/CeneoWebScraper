@@ -10,8 +10,14 @@ def index():
 
 @app.route('/products')
 def products():
+    products_names={}
     products = [x.split(".")[0] for x in listdir("app/products")]
-    return render_template("products.html.jinja", products=products)
+    for product_id in products:
+        product = Product(product_id)
+        product.import_from_json()
+        product = product.to_dict()
+        products_names[product_id]=product['product_name']
+    return render_template("products.html.jinja", products=products, products_names=products_names)
 
 @app.route('/product/<product_id>')
 def product(product_id):
