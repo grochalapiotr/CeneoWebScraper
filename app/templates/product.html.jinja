@@ -1,30 +1,36 @@
 {% extends "layout.html.jinja" %}
-
-{% block middle %}
+{% block head %}
+<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/product.css') }}">
+{% endblock head %}
+{% block body %}
     <h2>Opinie o produkcie</h2>
-    <table id='opinions' class="table table-striped table-primary">
-        <thead>
-            <tr>
-                <th>Kol1</th>
-                <th>Kol2</th>
-            </tr>
-        </thead>    
-        <tbody>
-            <tr>
-                <td>Data1</td>
-                <td>Data2</td>
-            </tr>
-            <tr>
-                <td>Data3</td>
-                <td>Data4</td>
-            </tr>
-        </tbody>
-    </table>
-{% endblock middle %} 
+    <div class="table_style">
+        <table id='opinions' class="table table-striped table-primary display nowrap">
+            <thead>
+                <tr>
+                {% for key in product.opinions[0] %}
+                    <th class="opinion-key">{{ key }}</th>
+                {% endfor %}
+                </tr>
+            </thead>    
+            <tbody>
+            {% for opinion in product.opinions %}
+                <tr>
+                {% for key in opinion %}
+                    <td>{{opinion[key]}}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %} 
 {% block scripts %}
     <script>
-        $(document).ready( function () {
-            $('#opinions').DataTable();
-        } );
+        $(document).ready(function() {
+    $('#opinions').DataTable( {
+        "scrollX": true
+    } );
+} );
     </script>
 {% endblock scripts %}

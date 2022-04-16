@@ -3,8 +3,8 @@ from app import app
 from flask import render_template, redirect, url_for, request
 from os import listdir
 
+#@app.route('/index')
 @app.route('/')
-@app.route('/index')
 def index():
     return render_template("index.html.jinja")
 
@@ -17,7 +17,7 @@ def products():
 def product(product_id):
     product = Product(product_id)
     product.import_from_json()
-    return render_template("product.html.jinja", product=str(product))
+    return render_template("product.html.jinja", product=product.to_dict())
 
 @app.route('/author')
 def author():

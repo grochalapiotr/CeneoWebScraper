@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pl">
   <head>
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/layout.css') }}">
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +12,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
         <title>Ceneo Web Scraper</title>
+        {% block head %}{% endblock %}
   </head>
   <body>
     
@@ -41,23 +43,25 @@
 </nav>
 
 
-
+{% block body %}{% endblock %}
 <div class="container">
             <div class="row">
                 <div class="col-3">
+                {% block left %}
+                {% endblock left %}
+
                 {% block right %}
-                
                 {% endblock right %}
+
                 </div>
                 <div class="col-9">
                 {% block middle %}
-                    <h2>To jest plik layout</h2>
                 {% endblock middle %}
                 </div>
             </div>
         </div>
 
-        <footer class="container alert alert-primary fixed-bottom">
+        <footer id="person" class="container alert alert-primary bottom" style="margin:20px auto">
             (c) Piotr Grochala, Uniwersytet Ekonomiczny w Krakowie
         </footer>
         <!-- jQuery & Datatables -->
