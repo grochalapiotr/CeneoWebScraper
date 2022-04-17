@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import re
+from statistics import mean
 
 class Product:
     def __init__(self, product_id, product_name = None, opinions = [], opinions_count = None, pros_count = None, cons_count = None, average_score = None):
@@ -76,10 +77,12 @@ class Product:
             self.opinions.append(Opinion(**opinion))
 
     def analyze(self):
+        print(self.opinions[0].to_dict())
+        # self.opinions to lista z obietkatmi Opinion
         self.opinions_count = len(self.opinions)
-        #self.pros_count = self.opinions.pros.map(bool).sum()
-        #self.cons_count = self.opinions.cons.map(bool).sum()
-        #self.average_score = self.opinions.stars.mean()
+        self.pros_count = len([True for x in self.opinions if x.to_dict()['pros']])
+        self.cons_count = len([True for x in self.opinions if x.to_dict()['cons']])
+        self.average_score = round(mean([x.to_dict()['stars'] for x in self.opinions]), 1)
         return self
 
 class Opinion:
